@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import scrapy
 from dbmovie.items import DbmovieListItem
+from dbmovie.items import DbmovieDetailItem
 
 class DbmovieSpider(scrapy.Spider):
     name = 'dbmovie'
@@ -14,7 +15,7 @@ class DbmovieSpider(scrapy.Spider):
 
         name = response.xpath('//div[@id="wrapper"]/div[@id="content"]/h1/text()').extract()[0]
         print(name)
-
+        # 获取包含电影信息的标签列表
         movieLi = response.xpath('//*[@id="content"]/div/div[1]/ol/li')
 
         for li in movieLi:
@@ -44,6 +45,9 @@ class DbmovieSpider(scrapy.Spider):
             print(movieLink)
             item['movieLink'] = movieLink
 
+            yield scrapy.Request(item['movieLink'],
+                                 callback= self.parse_detail,
+                                 meta={'item':item})
         try:
             next_url = response.xpath('//*[@id="content"]/div/div[1]/'
                                    'div[2]/span[3]/a/@href').extract()[0]
@@ -54,3 +58,18 @@ class DbmovieSpider(scrapy.Spider):
             yield response.follow(next_url, callback = self.parse)
         else:
             print("It is over")
+
+
+    def parse_detail(self, response):
+        item = DbmovieDetailItem()
+        content = response.xpath('//*[@id="content"]')
+        # 电影详情页标题
+        title = content.xpath('./h1/span[1]/text()').extract()[0]
+        print(title)
+        item['title'] = title
+
+        commentLink = response.xpath('//*[@id="comments-section"]'
+                                     '/div[1]/h2/span/a/@href').extract()[0]
+        print(commentLink)
+
+        yield

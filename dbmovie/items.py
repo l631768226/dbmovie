@@ -29,3 +29,11 @@ class DbmovieListItem(scrapy.Item):
     scrapyTime = scrapy.Field()
     pass
 
+class DbmovieDetailItem(scrapy.Item):
+    # 电影标题
+    title = scrapy.Field()
+    # 电影年份
+    year = scrapy.Field()
+
+
+    pass
