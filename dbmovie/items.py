@@ -10,5 +10,22 @@ import scrapy
 
 class DbmovieItem(scrapy.Item):
     # define the fields for your item here like:
-    # name = scrapy.Field()
     pass
+
+
+# 电影排名列表Item
+class DbmovieListItem(scrapy.Item):
+    # 电影标题
+    title = scrapy.Field()
+    # 电影排名
+    rank = scrapy.Field()
+    # 电影详情页面链接
+    movieLink = scrapy.Field()
+    # 电影评分
+    score = scrapy.Field()
+    # 评论人数
+    commentCount = scrapy.Field()
+    # 爬取时间
+    scrapyTime = scrapy.Field()
+    pass
+
