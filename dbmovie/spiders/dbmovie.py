@@ -46,7 +46,11 @@ class DbmovieSpider(scrapy.Spider):
             movieLink = li.xpath('./div/div[2]/div[1]/a/@href').extract()[0]
             print(movieLink)
             item['movieLink'] = movieLink
+            # 精髓简介
+            inq = li.xpath('./div/div[2]/div[2]/p[2]/span/text()').extract()[0]
+            item['inq'] = inq
 
+            yield item
             yield scrapy.Request(item['movieLink'],
                                  callback= self.parse_detail)
         try:
