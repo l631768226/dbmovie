@@ -83,6 +83,14 @@ DOWNLOAD_DELAY = 5
 # Enable showing throttling stats for every response received:
 #AUTOTHROTTLE_DEBUG = False
 
+# mysql数据库连接配置
+MYSQL_HOST = '127.0.0.1'
+MYSQL_DBNAME = 'dbmovie'
+MYSQL_USER = 'dbmovie'
+MYSQL_PASSWORD = 'dbtop250'
+
+MYSQL_PORT = 3306
+
 # Enable and configure HTTP caching (disabled by default)
 # See https://doc.scrapy.org/en/latest/topics/downloader-middleware.html#httpcache-middleware-settings
 #HTTPCACHE_ENABLED = True

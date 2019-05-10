@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 import scrapy
+
 from dbmovie.items import DbmovieListItem
 from dbmovie.items import DbmovieDetailItem
+from dbmovie.items import DbmovieCommentItem
 
 class DbmovieSpider(scrapy.Spider):
     name = 'dbmovie'
@@ -46,8 +48,7 @@ class DbmovieSpider(scrapy.Spider):
             item['movieLink'] = movieLink
 
             yield scrapy.Request(item['movieLink'],
-                                 callback= self.parse_detail,
-                                 meta={'item':item})
+                                 callback= self.parse_detail)
         try:
             next_url = response.xpath('//*[@id="content"]/div/div[1]/'
                                    'div[2]/span[3]/a/@href').extract()[0]
@@ -61,15 +62,41 @@ class DbmovieSpider(scrapy.Spider):
 
 
     def parse_detail(self, response):
-        item = DbmovieDetailItem()
+
+        detailItem = DbmovieDetailItem()
         content = response.xpath('//*[@id="content"]')
         # 电影详情页标题
         title = content.xpath('./h1/span[1]/text()').extract()[0]
         print(title)
-        item['title'] = title
+        detailItem['title'] = title
 
         commentLink = response.xpath('//*[@id="comments-section"]'
                                      '/div[1]/h2/span/a/@href').extract()[0]
         print(commentLink)
 
-        yield
+        yield scrapy.Request(commentLink, callback = self.parse_comment)
+
+
+    def parse_comment(self, response):
+        # 接收电影详情页传递的参数
+        url = response.request.url
+        baseUrl = url.split("?")[0]
+        commentItem = DbmovieCommentItem()
+        commentDivs = response.xpath('//*[@id="comments"]/div[@class="comment-item"]')
+        for commentDiv in commentDivs:
+            # 获取评论人员的昵称
+            nickName = commentDiv.xpath('./div[2]/h3/span[2]/a/text()').extract()[0]
+            print(nickName)
+
+            try:
+                # 获取下一页的地址链接（需要拼接）
+                next_url = response.xpath('//*[@id="paginator"]/a[@class="next"]/@href').extract()[0]
+            except:
+                next_url = None
+
+            if next_url is not None:
+                # 组拼下一页评论详情的连接地址
+                next_url = baseUrl + next_url
+                yield response.follow(next_url, callback=self.parse_comment)
+            else:
+                print("these comments are over")
