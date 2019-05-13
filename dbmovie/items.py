@@ -50,15 +50,15 @@ class DbmovieDetailItem(scrapy.Item):
     scenarios = scrapy.Field()
     # 主演 var
     starring = scrapy.Field()
-    # 电影类型
+    # 电影类型 var 20
     category = scrapy.Field()
     # 国家和地区 var 20
     area = scrapy.Field()
-    # 语言  var 10
+    # 语言  var 30
     language = scrapy.Field()
-    # 上映日期 var
+    # 上映日期 var 50
     releaseDate = scrapy.Field()
-    # 电影时长
+    # 电影时长  var 6 待议
     duration = scrapy.Field()
     # 电影其它名称 var 100
     alias = scrapy.Field()
@@ -82,10 +82,7 @@ class DbmovieDetailItem(scrapy.Item):
     commentCount = scrapy.Field()
     # 评论详情页链接地址
     commentLink = scrapy.Field()
-    # 问题数量
-    questionNum = scrapy.Field()
-    # 问题页首页链接
-    questionLinking = scrapy.Field()
+
     # 影评数量
     criticNum = scrapy.Field()
     # 影评页首页链接
