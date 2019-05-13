@@ -45,7 +45,7 @@ class DbmovieDetailItem(scrapy.Item):
     # 电影海报链接 var 100
     img = scrapy.Field()
     # 导演 20
-    director = scrapy.Field()
+    directors = scrapy.Field()
     # 编剧 20
     scenarios = scrapy.Field()
     # 主演 var
