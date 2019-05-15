@@ -6,6 +6,8 @@
 # https://doc.scrapy.org/en/latest/topics/spider-middleware.html
 
 from scrapy import signals
+from dbmovie.spiders.IPProxyGet import GetIP
+import random
 
 class DbmovieSpiderMiddleware(object):
     # Not all methods need to be defined. If a method is not defined,
@@ -54,7 +56,6 @@ class DbmovieSpiderMiddleware(object):
     def spider_opened(self, spider):
         spider.logger.info('Spider opened: %s' % spider.name)
 
-
 class DbmovieDownloaderMiddleware(object):
     # Not all methods need to be defined. If a method is not defined,
     # scrapy acts as if the downloader middleware does not modify the
@@ -100,3 +101,16 @@ class DbmovieDownloaderMiddleware(object):
 
     def spider_opened(self, spider):
         spider.logger.info('Spider opened: %s' % spider.name)
+
+class RandomProxyMiddleware(object):
+    #动态设置ip代理
+    def process_request(self, request, spider):
+        # get_ip = GetIP()
+        # if len(get_ip) > 0 :
+        #     ip = random.choice(get_ip)
+        #     print("****************")
+        #     print(ip)
+        #     request.meta["proxy"] = ip
+        # else:
+        #     pass
+        request.meta["proxy"] = 'http://112.87.68.252:9999'

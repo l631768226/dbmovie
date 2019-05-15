@@ -95,9 +95,12 @@ class DbmovieCommentItem(scrapy.Item):
     # 昵称
     nickName = scrapy.Field()
     # 评论星级
-    star = scrapy.Field()
+    rating = scrapy.Field()
     # 评论时间
     commentTime = scrapy.Field()
-
+    # 评论内容
+    short = scrapy.Field()
+    # 获取有用数量
+    vote = scrapy.Field()
 
     pass

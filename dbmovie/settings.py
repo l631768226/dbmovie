@@ -55,8 +55,7 @@ DOWNLOAD_DELAY = 5
 # Enable or disable downloader middlewares
 # See https://doc.scrapy.org/en/latest/topics/downloader-middleware.html
 # DOWNLOADER_MIDDLEWARES = {
-#    'dbmovie.middlewares.DbmovieDownloaderMiddleware': 543,
-#    'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware':123,
+#    'dbmovie.middlewares.RandomProxyMiddleware': 543
 # }
 
 # Enable or disable extensions

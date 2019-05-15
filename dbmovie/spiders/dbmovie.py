@@ -240,7 +240,7 @@ class DbmovieSpider(scrapy.Spider):
 
 
     def parse_comment(self, response):
-        # 接收电影详情页传递的参数
+        # 获取当前爬取的地址
         url = response.request.url
         baseUrl = url.split("?")[0]
         commentItem = DbmovieCommentItem()
