@@ -44,11 +44,11 @@ class DbmovieDetailItem(scrapy.Item):
     otherTiles = scrapy.Field()
     # 电影海报链接 var 100
     img = scrapy.Field()
-    # 导演 20
+    # 导演 var 20
     directors = scrapy.Field()
-    # 编剧 20
+    # 编剧 var 30
     scenarios = scrapy.Field()
-    # 主演 var
+    # 主演 var 255
     starring = scrapy.Field()
     # 电影类型 var 20
     category = scrapy.Field()
@@ -56,31 +56,31 @@ class DbmovieDetailItem(scrapy.Item):
     area = scrapy.Field()
     # 语言  var 30
     language = scrapy.Field()
-    # 上映日期 var 50
+    # 上映日期 var 70
     releaseDate = scrapy.Field()
     # 电影时长  var 6 待议
     duration = scrapy.Field()
-    # 电影其它名称 var 100
+    # 电影其它名称 var 70
     alias = scrapy.Field()
-    # 评分
+    # 评分 double 3,1
     score = scrapy.Field()
-    # 打分人数
+    # 打分人数 int 9
     scoreNum = scrapy.Field()
-    # 5星评论比重
+    # 5星评论比重 double 3,1
     star5 = scrapy.Field()
-    # 4星评论比重
+    # 4星评论比重 double 3,1
     star4 = scrapy.Field()
-    # 3星评论比重
+    # 3星评论比重 double 3,1
     star3 = scrapy.Field()
-    # 2星评论比重
+    # 2星评论比重 double 3,1
     star2 = scrapy.Field()
-    # 1星评论比重
+    # 1星评论比重 double 3,1
     star1 = scrapy.Field()
-    # 同类比较
+    # 同类比较  var 30
     comparison = scrapy.Field()
-    # 评论人数
+    # 评论人数 int 9
     commentCount = scrapy.Field()
-    # 评论详情页链接地址
+    # 评论详情页链接地址 var 50
     commentLink = scrapy.Field()
 
     # 影评数量

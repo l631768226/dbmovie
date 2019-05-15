@@ -6,7 +6,6 @@
 # https://doc.scrapy.org/en/latest/topics/spider-middleware.html
 
 from scrapy import signals
-from scrapy.contrib.downloadermiddleware.httpproxy import HttpProxyMiddleware
 
 class DbmovieSpiderMiddleware(object):
     # Not all methods need to be defined. If a method is not defined,
@@ -101,7 +100,3 @@ class DbmovieDownloaderMiddleware(object):
 
     def spider_opened(self, spider):
         spider.logger.info('Spider opened: %s' % spider.name)
-
-class IPPOOIS(HttpProxyMiddleware):
-    def __init__(self, ip = ''):
-        self.ip = ip

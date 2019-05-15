@@ -20,7 +20,7 @@ class DbdetailSpider(scrapy.Spider):
         titleArrayLength = len(titleArray)
         # 裁剪出中文译名
         title = titleArray[0]
-
+        print(title)
         if(titleArrayLength > 1):
             # 根据空格拆分的标题信息数组不止一节 则为大陆之外地区的电影，获取原始名称
             originalTitle = titles.split(title +  " ")[1]
@@ -145,11 +145,11 @@ class DbdetailSpider(scrapy.Spider):
 
         # 获取星级评价比重
         ratingWeightArray = content.xpath('//span[@class="rating_per"]/text()').extract()
-        star5 = ratingWeightArray[0]
-        star4 = ratingWeightArray[1]
-        star3 = ratingWeightArray[2]
-        star2 = ratingWeightArray[3]
-        star1 = ratingWeightArray[4]
+        star5 = ratingWeightArray[0].replace("%", "")
+        star4 = ratingWeightArray[1].replace("%", "")
+        star3 = ratingWeightArray[2].replace("%", "")
+        star2 = ratingWeightArray[3].replace("%", "")
+        star1 = ratingWeightArray[4].replace("%", "")
         print(star5, star4, star3, star2, star1)
         detailItem['star5'] = star5
         detailItem['star4'] = star4
