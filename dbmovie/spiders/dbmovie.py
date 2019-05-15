@@ -201,7 +201,7 @@ class DbmovieSpider(scrapy.Spider):
         print(scoreNum)
         detailItem['scoreNum'] = scoreNum
 
-        # 获取星级评价比重
+        # 获取星级评价比重 并去除%
         ratingWeightArray = content.xpath('//span[@class="rating_per"]/text()').extract()
         star5 = ratingWeightArray[0].replace("%", "")
         star4 = ratingWeightArray[1].replace("%", "")
