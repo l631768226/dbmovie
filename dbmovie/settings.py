@@ -21,7 +21,7 @@ FEED_EXPORT_ENCODING = 'UTF-8'
 #USER_AGENT = 'dbmovie (+http://www.yourdomain.com)'
 
 # Obey robots.txt rules
-ROBOTSTXT_OBEY = True
+ROBOTSTXT_OBEY = False
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 #CONCURRENT_REQUESTS = 32
@@ -54,9 +54,10 @@ DOWNLOAD_DELAY = 5
 
 # Enable or disable downloader middlewares
 # See https://doc.scrapy.org/en/latest/topics/downloader-middleware.html
-#DOWNLOADER_MIDDLEWARES = {
+# DOWNLOADER_MIDDLEWARES = {
 #    'dbmovie.middlewares.DbmovieDownloaderMiddleware': 543,
-#}
+#    'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware':123,
+# }
 
 # Enable or disable extensions
 # See https://doc.scrapy.org/en/latest/topics/extensions.html
