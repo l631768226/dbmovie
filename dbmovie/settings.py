@@ -86,8 +86,8 @@ ITEM_PIPELINES = {
 # mysql数据库连接配置
 MYSQL_HOST = '127.0.0.1'
 MYSQL_DBNAME = 'dbmovie'
-MYSQL_USER = 'dbmovie'
-MYSQL_PASSWORD = 'dbtop250'
+MYSQL_USER = 'root'
+MYSQL_PASSWORD = 'ly10'
 
 MYSQL_PORT = 3306
 
@@ -98,4 +98,7 @@ MYSQL_PORT = 3306
 #HTTPCACHE_DIR = 'httpcache'
 #HTTPCACHE_IGNORE_HTTP_CODES = []
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
-USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3493.3 Safari/537.36'
+DOWNLOAD_DELAY = 3
+RANDOMIZE_DOWNLOAD_DELAY = True
+USER_AGENT = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_3) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.54 Safari/536.5'
+COOKIES_ENABLED = True

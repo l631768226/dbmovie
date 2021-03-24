@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
+import re
+
 import scrapy
+import time
 
 from dbmovie.items import DbmovieListItem
 from dbmovie.items import DbmovieDetailItem
@@ -38,18 +41,30 @@ class DbmovieSpider(scrapy.Spider):
             item['score'] = score
 
             # 获取电影的评论人数
-            commentCount = li.xpath('./div/div[2]/div[2]/div/span[4]').extract()[0]
-            print(commentCount)
-            item['commentCount'] = commentCount
+            # //*[@id="content"]/div/div[1]/ol/li[1]/div/div[2]/div[2]/div/span[4]
+            commentCount = li.xpath('./div/div[2]/div[2]/div/span[4]/text()').extract()[0]
+            newCount = commentCount.replace('人评价', '')
+            item['commentCount'] = newCount
 
             # 电影详情链接
             movieLink = li.xpath('./div/div[2]/div[1]/a/@href').extract()[0]
             print(movieLink)
             item['movieLink'] = movieLink
             # 精髓简介
-            inq = li.xpath('./div/div[2]/div[2]/p[2]/span/text()').extract()[0]
-            item['inq'] = inq
+            try:
+                inq = li.xpath('./div/div[2]/div[2]/p[2]/span/text()').extract()[0]
+                item['inq'] = inq
+            except:
+                item['inq'] = ''
+            # 图片链接
+            # //*[@id="content"]/div/div[1]/ol/li[1]/div/div[1]/a/img
+            # //*[@id="content"]/div/div[1]/ol/li[3]/div/div[1]/a/img
+            img = li.xpath('./div/div[1]/a/img/@src').extract()[0]
+            item['img'] = img
+            print(img)
 
+            timeStr = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
+            item['scrapyTime'] = timeStr
             yield item
             yield scrapy.Request(item['movieLink'],
                                  callback= self.parse_detail)
@@ -68,6 +83,13 @@ class DbmovieSpider(scrapy.Spider):
     def parse_detail(self, response):
         detailItem = DbmovieDetailItem()
         content = response.xpath('//*[@id="content"]')
+        # //*[@id="content"]/div[1]/span[1]
+
+        rank = content.xpath('./div[1]/span[1]/text()').extract()[0]
+        newRank = rank.replace('No.', '')
+        print(rank)
+        print(newRank)
+        detailItem['rank'] = newRank
 
         # 电影详情页的标题
         titles = content.xpath('./h1/span[1]/text()').extract()[0]
@@ -124,7 +146,7 @@ class DbmovieSpider(scrapy.Spider):
         # 获取语言
         language = infoList[1]
         print(language)
-        detailItem['language'] = language
+        detailItem['lang'] = language
 
         # 获取其它片名
         alias = infoList[len(infoList)-1]
@@ -236,7 +258,9 @@ class DbmovieSpider(scrapy.Spider):
         print(commentLink)
         detailItem['commentLink'] = commentLink
 
-        yield scrapy.Request(commentLink, callback = self.parse_comment)
+        yield detailItem
+        # yield scrapy.Request(commentLink, callback = self.parse_comment)
+
 
 
     def parse_comment(self, response):

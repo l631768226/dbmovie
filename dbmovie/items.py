@@ -29,11 +29,14 @@ class DbmovieListItem(scrapy.Item):
     scrapyTime = scrapy.Field()
     # 精髓简介 var 50
     inq = scrapy.Field()
-
+    # 图片链接
+    img = scrapy.Field()
     pass
 
 # 电影详情Item
 class DbmovieDetailItem(scrapy.Item):
+    # 电影排名
+    rank = scrapy.Field()
     # 电影标题 var 14
     title = scrapy.Field()
     # 原始标题 var 50
@@ -52,10 +55,10 @@ class DbmovieDetailItem(scrapy.Item):
     starring = scrapy.Field()
     # 电影类型 var 20
     category = scrapy.Field()
-    # 国家和地区 var 20
+    # 国家和地区 var 100
     area = scrapy.Field()
     # 语言  var 30
-    language = scrapy.Field()
+    lang = scrapy.Field()
     # 上映日期 var 70
     releaseDate = scrapy.Field()
     # 电影时长  var 6 待议
@@ -104,3 +107,47 @@ class DbmovieCommentItem(scrapy.Item):
     vote = scrapy.Field()
 
     pass
+
+# CREATE TABLE `movieItem` (
+#   `id` int(10) NOT NULL AUTO_INCREMENT,
+#   `title` varchar(50) DEFAULT NULL,
+#   `rank` int(3) DEFAULT NULL,
+#   `movieLink` varchar(255) DEFAULT NULL,
+#   `score` double(4,2) DEFAULT NULL,
+#   `commentCount` int(10) DEFAULT NULL,
+#   `scrapyTime` varchar(20) DEFAULT NULL,
+#   `inq` varchar(50) DEFAULT NULL,
+#   `img` varchar(255) DEFAULT NULL,
+#   PRIMARY KEY (`id`)
+# ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+# CREATE TABLE `movieDetail` (
+#   `id` int(10) NOT NULL AUTO_INCREMENT,
+#   `title` varchar(50) DEFAULT NULL,
+#   `originalTitle` varchar(50) DEFAULT NULL,
+#   `years` varchar(4) DEFAULT NULL,
+#   `otherTitles` varchar(255) DEFAULT NULL,
+#   `img` varchar(255) DEFAULT NULL,
+#   `directors` varchar(20) DEFAULT NULL,
+#   `scenarios` varchar(30) DEFAULT NULL,
+#   `starring` varchar(255) DEFAULT NULL,
+#   `category` varchar(20) DEFAULT NULL,
+#   `area` varchar(20) DEFAULT NULL,
+#   `lang` varchar(30) DEFAULT NULL,
+#   `releaseDate` varchar(70) DEFAULT NULL,
+#   `duration` varchar(20) DEFAULT NULL,
+#   `alias` varchar(70) DEFAULT NULL,
+#   `score` double(3,1) DEFAULT NULL,
+#   `scoreNum` int(9) DEFAULT NULL,
+#   `star5` double(3,1) DEFAULT NULL,
+#   `star4` double(3,1) DEFAULT NULL,
+#   `star3` double(3,1) DEFAULT NULL,
+#   `star2` double(3,1) DEFAULT NULL,
+#   `star1` double(3,1) DEFAULT NULL,
+#   `comparison` varchar(30) DEFAULT NULL,
+#   `commentCount` int(9) DEFAULT NULL,
+#   `commentLink` varchar(255) DEFAULT NULL,
+#   `criticNum` int(10) DEFAULT NULL,
+#   `criticLinking` varchar(255) DEFAULT NULL,
+#   PRIMARY KEY (`id`)
+# ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;

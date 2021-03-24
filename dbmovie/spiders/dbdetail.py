@@ -66,7 +66,7 @@ class DbdetailSpider(scrapy.Spider):
         # 获取语言
         language = infoList[1]
         print(language)
-        detailItem['language'] = language
+        detailItem['lang'] = language
 
         # 获取其它片名
         alias = infoList[len(infoList)-1]
