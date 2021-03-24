@@ -119,24 +119,23 @@ class DbmovieCommentItem(scrapy.Item):
 #   `inq` varchar(50) DEFAULT NULL,
 #   `img` varchar(255) DEFAULT NULL,
 #   PRIMARY KEY (`id`)
-# ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+# ) ENGINE=InnoDB AUTO_INCREMENT=251 DEFAULT CHARSET=utf8mb4;
 
 # CREATE TABLE `movieDetail` (
 #   `id` int(10) NOT NULL AUTO_INCREMENT,
 #   `title` varchar(50) DEFAULT NULL,
-#   `originalTitle` varchar(50) DEFAULT NULL,
+#   `originalTitle` varchar(100) DEFAULT NULL,
 #   `years` varchar(4) DEFAULT NULL,
-#   `otherTitles` varchar(255) DEFAULT NULL,
 #   `img` varchar(255) DEFAULT NULL,
-#   `directors` varchar(20) DEFAULT NULL,
-#   `scenarios` varchar(30) DEFAULT NULL,
+#   `directors` varchar(100) DEFAULT NULL,
+#   `scenarios` varchar(255) DEFAULT NULL,
 #   `starring` varchar(255) DEFAULT NULL,
 #   `category` varchar(20) DEFAULT NULL,
-#   `area` varchar(20) DEFAULT NULL,
-#   `lang` varchar(30) DEFAULT NULL,
-#   `releaseDate` varchar(70) DEFAULT NULL,
-#   `duration` varchar(20) DEFAULT NULL,
-#   `alias` varchar(70) DEFAULT NULL,
+#   `area` varchar(100) DEFAULT NULL,
+#   `lang` varchar(100) DEFAULT NULL,
+#   `releaseDate` varchar(100) DEFAULT NULL,
+#   `duration` varchar(100) DEFAULT NULL,
+#   `alias` varchar(255) DEFAULT NULL,
 #   `score` double(3,1) DEFAULT NULL,
 #   `scoreNum` int(9) DEFAULT NULL,
 #   `star5` double(3,1) DEFAULT NULL,
@@ -144,10 +143,11 @@ class DbmovieCommentItem(scrapy.Item):
 #   `star3` double(3,1) DEFAULT NULL,
 #   `star2` double(3,1) DEFAULT NULL,
 #   `star1` double(3,1) DEFAULT NULL,
-#   `comparison` varchar(30) DEFAULT NULL,
+#   `comparison` varchar(100) DEFAULT NULL,
 #   `commentCount` int(9) DEFAULT NULL,
 #   `commentLink` varchar(255) DEFAULT NULL,
 #   `criticNum` int(10) DEFAULT NULL,
 #   `criticLinking` varchar(255) DEFAULT NULL,
+#   `rank` int(3) DEFAULT NULL,
 #   PRIMARY KEY (`id`)
-# ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+# ) ENGINE=InnoDB AUTO_INCREMENT=251 DEFAULT CHARSET=utf8mb4;
